@@ -43,6 +43,14 @@ async function main() {
 
     app.use(express.static(path.resolve(__dirname, "public")));
 
+    app.get("/health", (_request, response) => {
+        response.json({
+            status: "ok",
+            aiConfigured: Boolean(genai),
+            timestamp: new Date().toISOString(),
+        });
+    });
+
     function startServer(port) {
         const server = http.createServer(app);
         const io = new Server(server, {
@@ -95,7 +103,9 @@ async function main() {
             console.error("Server error:", error);
             process.exit(1);
         });
-
+   console.log("hello i am the change ");
+   console.log("hello ye dusari baar bhe rha hu mai ");
+   console.log("ye mai tisari baar bna rha hu ");
         server.listen(port, () => {
             console.log(`Server running at http://localhost:${port}`);
         });

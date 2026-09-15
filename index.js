@@ -9,6 +9,10 @@ import { GoogleGenAI } from "@google/genai";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+function subtract(firstNumber, secondNumber) {
+    return firstNumber - secondNumber;
+}
+
 function loadEnvFile() {
     const envPath = path.resolve(__dirname, ".env");
     if (!fs.existsSync(envPath)) return;
@@ -99,6 +103,7 @@ async function main() {
    console.log("hello ye dusari baar bhe rha hu mai ");
    console.log("ye mai tisari baar bna rha hu ");
         server.listen(port, () => {
+            console.log("subtraction test:", subtract(5, 2));
             console.log(`Server running at http://localhost:${port}`);
         });
     }

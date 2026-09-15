@@ -180,7 +180,11 @@
         socket.on('disconnect', () => {
             console.log('Disconnected from server');
         });
+const user = null;
 
+console.log(user.name);
+const user_1 = null;
+console.log(user.name);
         socket.on('aiResponse', (data) => {
             console.log('Received AI response:', data);
             appendMessage(data, false);

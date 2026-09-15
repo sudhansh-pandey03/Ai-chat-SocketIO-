@@ -9,6 +9,10 @@ import { GoogleGenAI } from "@google/genai";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+function sum(firstNumber, secondNumber) {
+    return firstNumber + secondNumber;
+}
+
 function loadEnvFile() {
     const envPath = path.resolve(__dirname, ".env");
     if (!fs.existsSync(envPath)) return;
@@ -98,6 +102,11 @@ async function main() {
    console.log("hello i am the change ");
    console.log("hello ye dusari baar bhe rha hu mai ");
    console.log("ye mai tisari baar bna rha hu ");
+<<<<<<< Updated upstream
+=======
+    console.log("its my test pr");
+    console.log("sum test:", sum(2, 3));
+>>>>>>> Stashed changes
         server.listen(port, () => {
             console.log(`Server running at http://localhost:${port}`);
         });

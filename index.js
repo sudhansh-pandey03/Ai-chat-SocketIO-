@@ -99,6 +99,7 @@ async function main() {
    console.log("hello ye dusari baar bhe rha hu mai ");
    console.log("ye mai tisari baar bna rha hu ");
         server.listen(port, () => {
+            console.log("Chat server health: OK");
             console.log(`Server running at http://localhost:${port}`);
         });
     }

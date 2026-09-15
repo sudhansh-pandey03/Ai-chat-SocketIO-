@@ -52,6 +52,26 @@
             color: #cbd5e1;
         }
 
+        .connection-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 10px;
+            color: #fbbf24;
+            font-size: 0.82rem;
+        }
+
+        .connection-status::before {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: currentColor;
+            content: '';
+        }
+
+        .connection-status.connected { color: #4ade80; }
+        .connection-status.error { color: #fb7185; }
+
         .messages {
             flex: 1;
             overflow-y: auto;
@@ -152,6 +172,7 @@
         <header class="chat-header">
             <div class="chat-title">Simple Socket.io Chat</div>
             <div class="chat-subtitle">Open this page in two tabs to see real-time messages.</div>
+            <div class="connection-status" id="connectionStatus" role="status">Connecting...</div>
         </header>
 
         <section class="messages" id="messages"></section>
@@ -172,25 +193,28 @@
         const messages = document.getElementById('messages');
         const input = document.getElementById('messageInput');
         const sendBtn = document.getElementById('sendBtn');
+        const connectionStatus = document.getElementById('connectionStatus');
 
         socket.on('connect', () => {
-            console.log('Connected to server with id:', socket.id);
+            connectionStatus.textContent = 'Connected';
+            connectionStatus.className = 'connection-status connected';
+            sendBtn.disabled = false;
         });
 
         socket.on('disconnect', () => {
-            console.log('Disconnected from server');
+            connectionStatus.textContent = 'Disconnected';
+            connectionStatus.className = 'connection-status error';
+            sendBtn.disabled = true;
         });
-const user = null;
-console.log("ye dekho maine isme kucch add kiya hai ");
-console.log(user.name);
-const user_1 = null;
-console.log(user.name);
+
+        sendBtn.disabled = true;
         socket.on('aiResponse', (data) => {
             console.log('Received AI response:', data);
             appendMessage(data, false);
         });
 
         function sendMessage() {
+    if (!socket.connected) return;
     const text = input.value.trim();
     if (!text) return;
 
